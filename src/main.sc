@@ -93,9 +93,17 @@ theme: /
                     $response.replies = $response.replies || [];
                     $response.replies.push({
                         "type": "file",
-                        "fileUrl": "https://705402.selcdn.ru/bot_storage/2/Anticrisis_goods.pdf"
+                        "fileUrl": "https://705402.selcdn.ru/bot_storage/2/Anticrisis_goods.pdf",
+                        "fileName": "Anticrisis_goods.pdf",
+                        "mimeType": "application/pdf"
                     });
-                go!: ./LastPhrase
+                buttons:   
+                        "Идет!" -> ./LastPhrase
+                        
+                state: ClickButtons
+                        q: *
+                        a: Нажмите, пожалуйста, кнопку.
+                        go!: ..  
                 
                 state: LastPhrase
                     script:
