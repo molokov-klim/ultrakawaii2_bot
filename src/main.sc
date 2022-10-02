@@ -62,14 +62,41 @@ theme: /
                     state: IncorrectMail
                         event: noMatch
                         a: Мне кажется email введен с ошибкой, проверь пожалуйста и введи снова
-                        go!: /Start/Registration/ReceiveMail
+                        go!: /Start/Registration/GetMail/ReceiveMail
                 
                 
             state: GetPhone
                 a: Отлично, напиши твой номер телефона, я тебе позвоню, чтобы поболтать! Я шучу, мне нужно для занесения в мою систему
+                go!: ./ReceivePhone
+                
+                state: ReceivePhone
+                    
+                    state: CorrectPhone
+                        q: * @duckling.phone-number *
+                        script: $client.phone = $parseTree.value;
+                        go!: /Start/Registration/FinishRegistration
+                
+                    state: IncorrectPhone
+                        event: noMatch
+                        a: Мне кажется телефон введен с ошибкой, проверь пожалуйста и введи снова
+                        go!: /Start/Registration/GetPhone/ReceivePhone
                 
                 
+            state: FinishRegistration
+                a: Все получилось! Теперь держи твой подарочек – список востребованных в кризис ниш
+                script:
+                    $response.replies = $response.replies || [];
+                    $response.replies.push({
+                          "type": "file",
+                          "fileUrl": "https://705402.selcdn.ru/bot_storage/2/Anticrisis_goods.pdf",
+                          "fileName": "Anticrisis_goods.pdf",
+                          "mimeType": "application/pdf"
+                    });
+                go!: ./LastPhrase
                 
-                
-                
-                
+                state: LastPhrase
+                    a: И скажи себе: Я не сдамся ни перед какими трудностями!
+                    
+                    
+                    
+                    
