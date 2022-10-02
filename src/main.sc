@@ -18,7 +18,7 @@ theme: /
             state: YouCanDoIt
                 a: Поверь мне, были уже такие времена и наши стойкие коллеги предприниматели смогли преодолеть трудности и многие взлетели высоко до звезд. И ты тоже сможешь!
                 inlineButtons:
-                    "Да! Смогу!" -> /Start/Registration/GetNam
+                    "Да! Смогу!" -> /Start/Registration/GetName
                     {text:"Да! Смогу!", callback_data: "Да! Смогу!"}
 
 
