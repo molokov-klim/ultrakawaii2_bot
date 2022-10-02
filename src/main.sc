@@ -100,17 +100,7 @@ theme: /
                 go!: ./LastPhrase
                 
                 state: LastPhrase
-                    script:
-                        var user = $request.userFrom['id']
-                        $session.user = user
-                    GoogleSheets:
-                        operationType = writeDataToLine
-                        integrationId = a4fd69df-aa3f-4e92-9ee6-e082fede18fb
-                        spreadsheetId = 1A_sPgTWNXf9SImudDGystPrXwbNo8Z2gvEzkkkfygnI
-                        sheetName = 1
-                        body = {"values":["{{ $session.user }}", "{{ $client.name }}", "{{ $client.phone }}", "{{ $client.mail }}"]}
-                        okState = /Start/Registration/FinishRegistration/LastPhrase/GoodBye
-                        errorState = /Start/Registration/FinishRegistration/LastPhrase/GoodBye
+
 
                     state: GoodBye
                         buttons:
