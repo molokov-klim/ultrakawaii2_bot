@@ -4,20 +4,21 @@ theme: /
 
     state: Start
         q!: $regex</start>
-        a: Начнём.
+        intent!: /Старт
+        go!: /Start/Registration
+        
+        state: Registration
+            a: Приветики, мой дорогой друг! Я знаю, ты очень переживаешь из-за того, что не знаешь, что ждет торговлю в такое непростое время
+            inlineButtons:
+                "Да, очень" -> ./YouCanDoIt
+        
+            state: YouCanDoIt
+                a: Поверь мне, были уже такие времена и наши стойкие коллеги предприниматели смогли преодолеть трудности и многие взлетели высоко до звезд. И ты тоже сможешь!
+                inlineButtons:
+                    "Да! Смогу!" -> /Start/Registration/GetName
 
-    state: Hello
-        intent!: /привет
-        a: Привет привет
-
-    state: Bye
-        intent!: /пока
-        a: Пока пока
-
-    state: NoMatch
-        event!: noMatch
-        a: Я не понял. Вы сказали: {{$request.query}}
-
-    state: Match
-        event!: match
-        a: {{$context.intent.answer}}
+            state: GetName
+                a: getName
+        
+        
+        
