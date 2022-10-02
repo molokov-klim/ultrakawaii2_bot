@@ -11,9 +11,14 @@ theme: /
         
         state: Registration
             a: Приветики, мой дорогой друг! Я знаю, ты очень переживаешь из-за того, что не знаешь, что ждет торговлю в такое непростое время
-            inlineButtons:
-                "Да, очень" -> ./YouCanDoIt
-                {text:"Да, очень", callback_data: "callback_data"}
+            script:
+                $response.replies = $response.replies || [];
+                $response.replies.push({
+                    "type": "buttons",
+                    "buttons": [
+                        {"text": "Да, очень"}
+                    ]
+                });
         
         
             state: YouCanDoIt
