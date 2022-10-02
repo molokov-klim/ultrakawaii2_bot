@@ -97,13 +97,7 @@ theme: /
                         "fileName": "Anticrisis_goods.pdf",
                         "mimeType": "application/pdf"
                     });
-                buttons:   
-                        "Идет!" -> ./LastPhrase
-                        
-                state: ClickButtons
-                        q: *
-                        a: Нажмите, пожалуйста, кнопку.
-                        go!: ..  
+                go!: ./LastPhrase
                 
                 state: LastPhrase
                     script:
