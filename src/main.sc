@@ -14,7 +14,7 @@ theme: /
             script:
                 $response.replies = $response.replies || [];
                 $response.replies.push({
-                    "type": "buttons",
+                    "type": "inlineButtons",
                     "buttons": [
                         {"text": "Да, очень"}
                     ]
