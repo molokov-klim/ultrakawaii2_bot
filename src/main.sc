@@ -18,7 +18,47 @@ theme: /
                     "Да! Смогу!" -> /Start/Registration/GetName
 
             state: GetName
-                a: getName
+                a: А теперь давай оставим разговоры о тревоге и познакомимся. Меня зовут Каваюша. Я бот Молоковой Анны, лучшего учителя по работе с китайскими поставщиками. Я буду твоим верным помощником. Как тебя зовут?
+                go!: ./ReceiveName
+                 
+                state: ReceiveName
+                     
+                    state: CorrectName
+                        q: * @pymorphy.name *
+                        script: $client.name = $parseTree.value
+                        go!: ./Compliment
+        
+                        state: Compliment
+                            a: Какое классное имя, {{ $client.name }}! Человек с таким именем рожден быть успешным!
+                            inlineButtons:
+                                "Взаимно!" -> /Start/Registration/GetMail
+                                
+                            state: ClickButtons
+                                q: *
+                                a: Нажмите, пожалуйста, кнопку.
+                                go!: ..    
+        
+                    state: IncorrectName
+                        event: noMatch
+                        a: Не балуйтесь. Напишите ваше имя
+                        go!: /Start/Registration/GetName/ReceiveName
         
         
         
+            state: GetMail
+                a: {{ $client.name }}, напиши свой email, чтобы я мог присылать тебе полезные материалы и анонсы о предстоящих интересных событиях. Обещаю не спамить!
+                go!: ./ReceiveMail
+                state: ReceiveMail
+                    state: CorrectMail
+                        q: * @duckling.email *
+                        script: 
+                            $client.mail = $parseTree.value;
+                        go!: /Start/Registration/GetPhone
+                
+                
+                
+                
+                
+                
+            state: GetPhone
+                a: getPhone
