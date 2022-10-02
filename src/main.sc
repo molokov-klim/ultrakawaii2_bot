@@ -19,6 +19,11 @@ theme: /
                 a: Поверь мне, были уже такие времена и наши стойкие коллеги предприниматели смогли преодолеть трудности и многие взлетели высоко до звезд. И ты тоже сможешь!
                 buttons:
                     "Да! Смогу!" -> /Start/Registration/GetName
+                    
+                state: ClickButtons
+                    q: *
+                    a: Нажмите, пожалуйста, кнопку.
+                    go!: .. 
 
 
             state: GetName
@@ -95,7 +100,6 @@ theme: /
                 go!: ./LastPhrase
                 
                 state: LastPhrase
-                    a: И скажи себе: Я не сдамся ни перед какими трудностями!
                     script:
                         var user = $request.userFrom['id']
                         $session.user = user
@@ -105,8 +109,17 @@ theme: /
                         spreadsheetId = 1A_sPgTWNXf9SImudDGystPrXwbNo8Z2gvEzkkkfygnI
                         sheetName = 1
                         body = {"values":["{{ $session.user }}", "{{ $client.name }}", "{{ $client.phone }}", "{{ $client.mail }}"]}
-                        okState = /Start/Registration/FinishRegistration/LastPhrase
-                        errorState = /Start/Registration/FinishRegistration/LastPhrase
+                        okState = /Start/Registration/FinishRegistration/LastPhrase/GoodBye
+                        errorState = /Start/Registration/FinishRegistration/LastPhrase/GoodBye
+
+                    state: GoodBye
+                        buttons:
+                            "Спасибо" -> ./End
+                            
+                        state: End
+                            a: И скажи себе: Я не сдамся ни перед какими трудностями!
+                        
+                    
                     
                 state: Спасибо
                     intent: /Благодарность
