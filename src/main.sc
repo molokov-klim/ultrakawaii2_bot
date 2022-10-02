@@ -11,13 +11,13 @@ theme: /
         
         state: Registration
             a: Приветики, мой дорогой друг! Я знаю, ты очень переживаешь из-за того, что не знаешь, что ждет торговлю в такое непростое время
-            inlineButtons:
+            buttons:
                 "Да, очень" -> /Start/Registration/YouCanDoIt
         
         
             state: YouCanDoIt
                 a: Поверь мне, были уже такие времена и наши стойкие коллеги предприниматели смогли преодолеть трудности и многие взлетели высоко до звезд. И ты тоже сможешь!
-                inlineButtons:
+                buttons:
                     "Да! Смогу!" -> /Start/Registration/GetName
 
 
@@ -34,7 +34,7 @@ theme: /
         
                         state: Compliment
                             a: Какое классное имя, {{ $client.name }}! Человек с таким именем рожден быть успешным!
-                            inlineButtons:
+                            buttons:
                                 "Взаимно!" -> /Start/Registration/GetMail
                                 
                             state: ClickButtons
