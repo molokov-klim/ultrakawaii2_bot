@@ -96,7 +96,31 @@ theme: /
                 
                 state: LastPhrase
                     a: И скажи себе: Я не сдамся ни перед какими трудностями!
+                    script:
+                        var user = $request.userFrom['id']
+                        $session.user = user
+                    GoogleSheets:
+                        operationType = writeDataToLine
+                        integrationId = a4fd69df-aa3f-4e92-9ee6-e082fede18fb
+                        spreadsheetId = 1A_sPgTWNXf9SImudDGystPrXwbNo8Z2gvEzkkkfygnI
+                        sheetName = 1
+                        body = {"values":["{{ $session.user }}", "{{ $client.name }}", "{{ $client.phone }}", "{{ $client.mail }}"]}
+                        okState = /Start/Registration/FinishRegistration/LastPhrase
+                        errorState = /Start/Registration/FinishRegistration/LastPhrase
+                    
+                state: Спасибо
+                    intent: /Благодарность
+                    a: Пожалуйста! Я тебе всегда рад! Приходи еще и приводи друзей!
                     
                     
-                    
-                    
+            
+    state: NoMatch || noContext = true
+        event!: noMatch
+        a: Каваюша не понимает :( Введи /start чтобы начать заново
+
+    state: Obscene
+        q!: * @mlps-obscene.obscene *
+        a: Ненормативная лексика. Начнем заново
+        go!: /Start/Registration
+            
+            

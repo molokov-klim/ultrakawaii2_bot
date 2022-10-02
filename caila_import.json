@@ -16,28 +16,15 @@
     "shared" : false
   },
   "intents" : [ {
-    "id" : 12756993,
-    "path" : "/пока",
+    "id" : 12757730,
+    "path" : "/Благодарность",
     "enabled" : true,
     "shared" : false,
-    "phrases" : [ {
-      "text" : "пока"
-    } ],
+    "phrases" : [ ],
     "classificationRules" : {
       "refs" : [ ]
     },
-    "priority" : 0
-  }, {
-    "id" : 12756994,
-    "path" : "/привет",
-    "enabled" : true,
-    "shared" : false,
-    "phrases" : [ {
-      "text" : "привет"
-    } ],
-    "classificationRules" : {
-      "refs" : [ ]
-    },
+    "patterns" : [ ],
     "priority" : 0
   } ],
   "entities" : [ ],
