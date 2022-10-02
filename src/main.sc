@@ -13,14 +13,14 @@ theme: /
             a: Приветики, мой дорогой друг! Я знаю, ты очень переживаешь из-за того, что не знаешь, что ждет торговлю в такое непростое время
             inlineButtons:
                 "Да, очень" -> ./YouCanDoIt
-                {text:"ага", callback_data: "Да, очень"}
+                {text:"Да, очень", callback_data: "callback_data"}
         
         
             state: YouCanDoIt
                 a: Поверь мне, были уже такие времена и наши стойкие коллеги предприниматели смогли преодолеть трудности и многие взлетели высоко до звезд. И ты тоже сможешь!
                 inlineButtons:
                     "Да! Смогу!" -> /Start/Registration/GetName
-                    {text:"ага", callback_data: "Да! Смогу!"}
+                    {text:"Да! Смогу!", callback_data: "callback_data"}
 
 
             state: GetName
