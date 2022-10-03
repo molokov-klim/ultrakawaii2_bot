@@ -75,8 +75,10 @@ theme: /
                 go!: ./ReceivePhone
                 
                 state: ReceivePhone
+                    a: ReceivePhone
                     
                     state: CorrectPhone
+                        a: CorrectPhone
                         q: * @duckling.phone-number *
                         script: 
                             $client.phone = $parseTree.value;
@@ -90,7 +92,7 @@ theme: /
                             body = {"values":["{{ $session.user }}", "{{ $client.name }}", "{{ $client.phone }}", "{{ $client.mail }}"]}
                             okState = /Start/Registration/FinishRegistration/LastPhrase/GoodBye
                             errorState = /Start/Registration/FinishRegistration/LastPhrase/GoodBye
-                        a: Телефон - ОК
+                        
                         go!: /Start/Registration/FinishRegistration
                 
                     state: IncorrectPhone
