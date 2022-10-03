@@ -73,10 +73,7 @@ theme: /
             state: GetPhone
                 a: Отлично, напиши твой номер телефона, я тебе позвоню, чтобы поболтать! Я шучу, мне нужно для занесения в мою систему
                 go!: ./ReceivePhone
-                
                 state: ReceivePhone
-                    a: ReceivePhone
-                    
                     state: CorrectPhone
                         a: CorrectPhone
                         q: * @duckling.phone-number *
@@ -90,10 +87,8 @@ theme: /
                             spreadsheetId = 1A_sPgTWNXf9SImudDGystPrXwbNo8Z2gvEzkkkfygnI
                             sheetName = 1
                             body = {"values":["{{ $session.user }}", "{{ $client.name }}", "{{ $client.phone }}", "{{ $client.mail }}"]}
-                            okState = /Start/Registration/FinishRegistration/LastPhrase/GoodBye
-                            errorState = /Start/Registration/FinishRegistration/LastPhrase/GoodBye
-                        
-                        go!: /Start/Registration/FinishRegistration
+                            okState = /Start/Registration/FinishRegistration
+                            errorState = /Start/Registration/FinishRegistration
                 
                     state: IncorrectPhone
                         event: noMatch
