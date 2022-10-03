@@ -75,7 +75,6 @@ theme: /
                 go!: ./ReceivePhone
                 state: ReceivePhone
                     state: CorrectPhone
-                        a: CorrectPhone
                         q: * @duckling.phone-number *
                         script: 
                             $client.phone = $parseTree.value;
@@ -98,13 +97,19 @@ theme: /
                 
             state: FinishRegistration
                 a: Все получилось! Теперь держи твой подарочек – список востребованных в кризис ниш
-                script: $reactions.inlineButtons({text:"Получить подарок", url: "https://705402.selcdn.ru/bot_storage/2/Anticrisis_goods.pdf"});
+                script: 
+                    $response.replies = $response.replies || [];
+                    $response.replies.push({
+                        "type": "file",
+                        "fileUrl": "https://705402.selcdn.ru/bot_storage/2/Anticrisis_goods.pdf",
+                        "fileName": "Anticrisis_goods.pdf",
+                        "mimeType": "application/pdf"
+                    });
                 go!: ./LastPhrase
                 
                 
                 state: LastPhrase
                     a: И скажи себе: Я не сдамся ни перед какими трудностями!
-
 
             
     state: NoMatch || noContext = true
