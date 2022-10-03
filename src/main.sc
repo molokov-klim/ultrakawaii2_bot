@@ -89,9 +89,10 @@ theme: /
                 
             state: FinishRegistration
                 a: Все получилось! Теперь держи твой подарочек – список востребованных в кризис ниш
-                inlineButtons:
-                    {text:"Получить подарок", url:"https://705402.selcdn.ru/bot_storage/2/Anticrisis_goods.pdf"}
+                script:
+                    $reactions.inlineButtons({text:"Получить подарок", url: "https://705402.selcdn.ru/bot_storage/2/Anticrisis_goods.pdf"});
                 go!: ./LastPhrase
+                
                 
                 state: LastPhrase
                     script:
@@ -105,13 +106,8 @@ theme: /
                         body = {"values":["{{ $session.user }}", "{{ $client.name }}", "{{ $client.phone }}", "{{ $client.mail }}"]}
                         okState = /Start/Registration/FinishRegistration/LastPhrase/GoodBye
                         errorState = /Start/Registration/FinishRegistration/LastPhrase/GoodBye
+                    a: И скажи себе: Я не сдамся ни перед какими трудностями!
 
-                    state: GoodBye
-                        buttons:
-                            "Спасибо" -> ./End
-                            
-                        state: End
-                            a: И скажи себе: Я не сдамся ни перед какими трудностями!
                         
                 state: Спасибо
                     intent: /Благодарность
