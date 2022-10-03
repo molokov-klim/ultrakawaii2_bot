@@ -89,8 +89,7 @@ theme: /
                 
             state: FinishRegistration
                 a: Все получилось! Теперь держи твой подарочек – список востребованных в кризис ниш
-                script:
-                    $reactions.inlineButtons({text:"Получить подарок", url: "https://705402.selcdn.ru/bot_storage/2/Anticrisis_goods.pdf"});
+                script: $reactions.inlineButtons({text:"Получить подарок", url: "https://705402.selcdn.ru/bot_storage/2/Anticrisis_goods.pdf"});
                 go!: ./LastPhrase
                 
                 
