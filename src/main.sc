@@ -89,14 +89,8 @@ theme: /
                 
             state: FinishRegistration
                 a: Все получилось! Теперь держи твой подарочек – список востребованных в кризис ниш
-                script:
-                    $response.replies = $response.replies || [];
-                    $response.replies.push({
-                        "type": "file",
-                        "fileUrl": "https://705402.selcdn.ru/bot_storage/2/Anticrisis_goods.pdf",
-                        "fileName": "Anticrisis_goods.pdf",
-                        "mimeType": "application/pdf"
-                    });
+                inlineButtons:
+                    {text:"Получить подарок", url:"https://705402.selcdn.ru/bot_storage/2/Anticrisis_goods.pdf"}
                 go!: ./LastPhrase
                 
                 state: LastPhrase
@@ -119,8 +113,6 @@ theme: /
                         state: End
                             a: И скажи себе: Я не сдамся ни перед какими трудностями!
                         
-                    
-                    
                 state: Спасибо
                     intent: /Благодарность
                     a: Пожалуйста! Я тебе всегда рад! Приходи еще и приводи друзей!
