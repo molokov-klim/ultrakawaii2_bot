@@ -16,7 +16,6 @@
     "shared" : false
   },
   "intents" : [ {
-    "id" : 12772430,
     "path" : "/Благодарность",
     "enabled" : true,
     "shared" : false,

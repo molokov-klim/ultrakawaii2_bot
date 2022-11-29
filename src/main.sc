@@ -10,68 +10,26 @@ theme: /
         
         
         state: Registration
-            a: Приветики, мой дорогой друг! Я знаю, ты очень переживаешь из-за того, что не знаешь, что ждет торговлю в такое непростое время
-            buttons:
-                "Да, очень" -> /Start/Registration/YouCanDoIt
-        
-        
-            state: YouCanDoIt
-                a: Поверь мне, были уже такие времена и наши стойкие коллеги предприниматели смогли преодолеть трудности и многие взлетели высоко до звезд. И ты тоже сможешь!
-                buttons:
-                    "Да! Смогу!" -> /Start/Registration/GetName
-                    
-                state: ClickButtons
-                    q: *
-                    a: Нажмите, пожалуйста, кнопку.
-                    go!: .. 
-
-
+            a: Здравствуйте! Я – бот-помощник в компании Moanna Yiwu Trading. Я помогу вам с оформлением заявки на закупку товаров из Китая и доставку грузов.
+               Пожалуйста, заполните данные:
+            go!: /Start/Registration/GetName
+                   
             state: GetName
-                a: А теперь давай оставим разговоры о тревоге и познакомимся. Меня зовут Каваюша. Я бот Молоковой Анны, лучшего учителя по работе с китайскими поставщиками. Я буду твоим верным помощником. Как тебя зовут?
+                a: напишите ваше имя
                 go!: ./ReceiveName
-                 
                 state: ReceiveName
-                     
                     state: CorrectName
                         q: * @pymorphy.name *
                         script: $client.name = $parseTree.value
-                        go!: ./Compliment
-        
-                        state: Compliment
-                            a: Какое классное имя, {{ $client.name }}! Человек с таким именем рожден быть успешным!
-                            buttons:
-                                "Взаимно!" -> /Start/Registration/GetMail
-                                
-                            state: ClickButtons
-                                q: *
-                                a: Нажмите, пожалуйста, кнопку.
-                                go!: ..    
+                        go!: /Start/Registration/GetPhone
         
                     state: IncorrectName
                         event: noMatch
-                        a: Не балуйтесь. Напишите ваше имя
+                        a: Имя не распознано. Напишите имя
                         go!: /Start/Registration/GetName/ReceiveName
         
-        
-        
-            state: GetMail
-                a: {{ $client.name }}, напиши свой email, чтобы я мог присылать тебе полезные материалы и анонсы о предстоящих интересных событиях. Обещаю не спамить!
-                go!: ./ReceiveMail
-                state: ReceiveMail
-                    state: CorrectMail
-                        q: * @duckling.email *
-                        script: 
-                            $client.mail = $parseTree.value;
-                        go!: /Start/Registration/GetPhone
-                
-                    state: IncorrectMail
-                        event: noMatch
-                        a: Мне кажется email введен с ошибкой, проверь пожалуйста и введи снова
-                        go!: /Start/Registration/GetMail/ReceiveMail
-                
-                
             state: GetPhone
-                a: Отлично, напиши твой номер телефона, я тебе позвоню, чтобы поболтать! Я шучу, мне нужно для занесения в мою систему
+                a: напишите ваш телефон
                 go!: ./ReceivePhone
                 state: ReceivePhone
                     state: CorrectPhone
@@ -91,8 +49,24 @@ theme: /
                 
                     state: IncorrectPhone
                         event: noMatch
-                        a: Мне кажется телефон введен с ошибкой, проверь пожалуйста и введи снова
+                        a: Мне кажется телефон введен с ошибкой, проверьте пожалуйста и введи снова
                         go!: /Start/Registration/GetPhone/ReceivePhone
+                        
+                        
+            state: GetMail
+                a: напишите ваш email
+                go!: ./ReceiveMail
+                state: ReceiveMail
+                    state: CorrectMail
+                        q: * @duckling.email *
+                        script: 
+                            $client.mail = $parseTree.value;
+                        go!: /Start/Registration/GetPhone
+                
+                    state: IncorrectMail
+                        event: noMatch
+                        a: Мне кажется email введен с ошибкой, проверь пожалуйста и введи снова
+                        go!: /Start/Registration/GetMail/ReceiveMail
                 
                 
             state: FinishRegistration
@@ -103,6 +77,11 @@ theme: /
                 
                 state: LastPhrase
                     a: И скажи себе: Я не сдамся ни перед какими трудностями!
+        
+            
+                
+                
+
 
             
     state: NoMatch || noContext = true
